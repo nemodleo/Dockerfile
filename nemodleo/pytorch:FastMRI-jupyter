@@ -23,6 +23,7 @@ RUN adduser nemod sudo
 RUN echo 'nemod ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER nemod
 RUN echo "umask 007" >> ~/.bashrc
+USER root
 RUN adduser --gid 10000 --uid 10015 --disabled-password --gecos '' symoon
 RUN adduser symoon sudo
 RUN echo 'symoon ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
