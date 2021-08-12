@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-c"]
 RUN \
   apt-get update -y && \
   apt-get install -y apt-utils 2> >( grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2 ) && \
-  apt-get install -y --no-install-recommends sudo wget git vim
+  apt-get install -y --no-install-recommends sudo wget git vim screen
 
 EXPOSE 8888
 
