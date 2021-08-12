@@ -1,7 +1,7 @@
 FROM pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel
 MAINTAINER nemod.leo@snu.ac.kr
 
-RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter" > requirements.txt
+RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter\npandas\ntransformers" > requirements.txt
 RUN pip install -r requirements.txt
 
 ARG DEBIAN_FRONTEND=noninteractive
