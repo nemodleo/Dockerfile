@@ -1,0 +1,29 @@
+FROM pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel
+MAINTAINER nemod.leo@snu.ac.kr
+
+RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter" > requirements.txt
+RUN pip install -r requirements.txt
+
+ARG DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"]
+RUN \
+  apt-get update -y && \
+  apt-get install -y apt-utils 2> >( grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2 ) && \
+  apt-get install -y --no-install-recommends sudo wget git vim
+
+EXPOSE 8888
+
+RUN adduser --disabled-password --gecos '' admin
+RUN adduser admin sudo
+RUN echo 'admin ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN sudo groupadd -g 10000 connectome
+RUN sudo useradd -r -u 10010 -g connectome nemod 
+RUN adduser nemod sudo
+RUN echo 'nemod ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN sudo useradd -r -u 10015 -g connectome symoon 
+RUN adduser symoon sudo
+RUN echo 'symoon ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+WORKDIR '/FastMRI'
+
+CMD ["bash" "-c" "source /etc/bash.bashrc && jupyter notebook --notebook-dir=/tf --ip 0.0.0.0 --no-browser --allow-root"]
