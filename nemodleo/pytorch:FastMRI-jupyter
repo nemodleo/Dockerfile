@@ -28,7 +28,7 @@ RUN adduser --gid 10000 --uid 10015 --disabled-password --gecos '' symoon
 RUN adduser symoon sudo
 RUN echo 'symoon ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER symoon
-RUN echo "umask 007" >> ~/.bashrc
+RUN echo "umask 007\nalias ll='ls -alF'\nalias la='ls -A'\nalias l='ls -CF'" >> ~/.bashrc
 
 USER root
 RUN chmod -R 775 /opt/conda/bin/
