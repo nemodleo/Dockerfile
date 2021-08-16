@@ -1,7 +1,7 @@
 FROM pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
 MAINTAINER nemod.leo@snu.ac.kr
 
-RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter\npandas\ntransformers\nopencv-python\npillow\nwandb\n" > requirements.txt
+RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter\npandas\ntransformers\nopencv-python\npillow\nwandb\nadamp\n" > requirements.txt
 RUN echo "yacs\njoblib\nnatsort\ntqdm\neinops\nlinformer\ntimm\nptflops\ndataclasses\n" >> requirements.txt
 RUN pip install -r requirements.txt
 
