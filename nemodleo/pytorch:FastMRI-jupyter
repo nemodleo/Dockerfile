@@ -1,6 +1,7 @@
 FROM pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
 MAINTAINER nemod.leo@snu.ac.kr
 
+
 RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter\npandas\ntransformers\nopencv-python\npillow\nwandb\nadamp\n" > requirements.txt
 RUN echo "yacs\njoblib\nnatsort\ntqdm\neinops\nlinformer\ntimm\nptflops\ndataclasses\n" >> requirements.txt
 RUN pip install -r requirements.txt
@@ -15,8 +16,10 @@ RUN  \
 
 RUN wget https://github.com/mrirecon/bart/archive/v0.7.00.tar.gz
 RUN tar xzvf v0.7.00.tar.gz
-RUN cd bart-0.7.00
-# RUN make 
+WORKDIR /workspace/bart-0.7.00
+RUN make
+WORKDIR /workspace
+RUN chmod -R 777 /workspace
 
 
 EXPOSE 8888
