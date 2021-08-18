@@ -2,7 +2,7 @@ FROM pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
 MAINTAINER nemod.leo@snu.ac.kr
 
 
-RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter\npandas\ntransformers\nopencv-python\npillow\nwandb\nadamp\n" > requirements.txt
+RUN echo "numpy\nmatplotlib\nh5py\nscikit-image\njupyter\npandas\ntransformers\nopencv-python\npillow\nwandb\nadamp\nscikit-learn\n" > requirements.txt
 RUN echo "yacs\njoblib\nnatsort\ntqdm\neinops\nlinformer\ntimm\nptflops\ndataclasses\n" >> requirements.txt
 RUN pip install -r requirements.txt
 
@@ -11,7 +11,7 @@ SHELL ["/bin/bash", "-c"]
 RUN  \
   apt-get update -y && \
   apt-get install -y apt-utils 2> >( grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2 ) && \
-  apt-get install -y --no-install-recommends sudo wget git vim screen libgl1-mesa-glx libglib2.0-0 libsm6 libxrender1 libxext6 make gcc libfftw3-dev liblapacke-dev libpng-dev libopenblas-dev
+  apt-get install -y --no-install-recommends sudo wget zip git vim screen libgl1-mesa-glx libglib2.0-0 libsm6 libxrender1 libxext6 make gcc libfftw3-dev liblapacke-dev libpng-dev libopenblas-dev
 
 
 RUN wget https://github.com/mrirecon/bart/archive/v0.7.00.tar.gz
