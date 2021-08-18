@@ -49,6 +49,8 @@ RUN echo "export TOOLBOX_PATH=/workspace/bart-0.7.00 \n" >> ~/.bashrc
 USER root
 RUN chmod -R 775 /opt/conda/bin/
 
+# RUN pip install torchvision==0.10.0+cu111 
+RUN pip install torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html\n
 RUN pip install git+https://github.com/nemodleo/medutils.git
 
 WORKDIR '/FastMRI'
